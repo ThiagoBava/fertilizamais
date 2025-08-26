@@ -1,9 +1,9 @@
 <?php
-session_start();
+/*session_start();
 if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
     exit;
-}
+}*/
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST['form_submitted'] ?? '0') === '1') {
     // Coleta todos os dados do formulário

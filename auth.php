@@ -31,7 +31,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($user && password_verify($senha, $user['senha'])) {
     $_SESSION['usuario'] = $usuario;
-    header("Location: index.php");
+    header("Location: principal.php");
     exit;
 } else {
     $_SESSION['erro_login'] = "Usuário ou senha inválidos!";
