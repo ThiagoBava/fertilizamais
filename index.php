@@ -1,9 +1,9 @@
 <?php
-/*session_start();
+session_start();
 if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
     exit;
-}*/
+}
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST['form_submitted'] ?? '0') === '1') {
     // Coleta todos os dados do formulário
@@ -70,23 +70,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST['form_submitted'] ?? '0') =
     ];
 
     // Validação básica - verifica se pelo menos um campo de análise foi preenchido
-   // $camposAnalise = [
-   //     'argilaAntes', 'phH2OAntes', 'moAntes', 'pAntes', 'argilaDepois', 'phH2ODepois', 'moDepois'
-  //  ];
+    /*  $camposAnalise = [
+        'argilaAntes', 'phH2OAntes', 'moAntes', 'pAntes', 'argilaDepois', 'phH2ODepois', 'moDepois'
+    ];
     
-  //  $algumCampoPreenchido = false;
-  //  foreach ($camposAnalise as $campo) {
-  //      if (!empty($_POST[$campo])) {
-  //         $algumCampoPreenchido = true;
-   //         break;
-   //     }
-  //  }
+    $algumCampoPreenchido = false;
+    foreach ($camposAnalise as $campo) {
+        if (!empty($_POST[$campo])) {
+           $algumCampoPreenchido = true;
+            break;
+        }
+    }
     
-  //  if (!$algumCampoPreenchido) {
-   //     $_SESSION['erro'] = "Por favor, preencha pelo menos um campo de análise do solo";
-   //     header("Location: index.php");
-   //     exit();
-   // }
+    if (!$algumCampoPreenchido) {
+        $_SESSION['erro'] = "Por favor, preencha pelo menos um campo de análise do solo";
+        header("Location: index.php");
+        exit();
+    }*/
 
     header("Location: graficos.php");
     exit();
@@ -101,146 +101,181 @@ unset($_SESSION['erro']);
 <!DOCTYPE html>
 <html lang="pt-br">
    <head>
-      <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Fertilizamais</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!-- Bootstrap 5 JS (Bundle inclui Popper) -->
+      <!-- Bootstrap -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-      <style>
-         body {
-         background-color: #f9f9f9;
-         }
-         .sidebar {
-         width: 60px;
-         transition: width 0.3s;
-         overflow-x: hidden;
-         position: relative;
-         overflow: visible;
-         background-color: #198754; /* verde bootstrap */
-         color: white; /* texto branco */
-         }
-         .sidebar.expanded {
-         width: 200px;
-         }
-         .sidebar i {
-         margin: 1rem 0;
-         font-size: 20px;
-         cursor: pointer;
-         color: white; /* ícones brancos */
-         }
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #198754;
+            --secondary-color: #146c43;
+            --light-bg: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--light-bg);
+            margin-left: 70px;
+            transition: margin-left 0.3s;
+        }
+        
+        .sidebar {
+            width: 60px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: var(--primary-color);
+            color: white;
+            transition: width 0.3s;
+            overflow-x: hidden;
+            z-index: 1000;
+        }
+        
+        .sidebar.expanded {
+            width: 200px;
+        }
+        
+        .sidebar-menu {
+            padding-top: 20px;
+        }
+        
+        .sidebar-item {
+            padding: 10px 15px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .sidebar-item:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .sidebar-item i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            min-width: 25px;
+        }
+        
+        .sidebar-item span {
+            display: none;
+        }
+        
+        .sidebar.expanded .sidebar-item span {
+            display: inline;
+        }
+                
+        .toggle-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+        }
+
          .logo {
-         font-weight: bold;
-         color: green;
-         font-size: 24px;
+            font-weight: bold;
+            color: green;
+            font-size: 24px;
          }
+
          .tab-button {
-         border: none;
-         padding: 0.5rem 1rem;
-         background-color: #ddd;
-         margin-right: 0.5rem;
-         cursor: pointer;
+            border: none;
+            padding: 0.5rem 1rem;
+            background-color: #ddd;
+            margin-right: 0.5rem;
+            cursor: pointer;
          }
+
          .tab-button.active {
-         background-color: #3f51b5;
-         color: white;
+            background-color: #3f51b5;
+            color: white;
          }
+
          .tab-content {
-         display: none;
+            display: none;
          }
+
          .tab-content.active {
-         display: block;
+            display: block;
          }
+
          .form-narrow {
          /* ocupa toda a coluna por padrão */
-         max-width: 300px;  /* limite máximo da largura */
+            max-width: 300px;  /* limite máximo da largura */
          }
-         #submenuCadastro {
-         position: absolute;
-         top: 60px;
-         left: 60px;
-         min-width: 200px;
-         z-index: 1000;
-         display: none;
-         background-color: #198754; /* fundo verde */
-         color: white; /* texto branco */
-         border-radius: 0 0.375rem 0.375rem 0; /* opcional, arredonda canto submenu */
-         }
-         #submenuCadastro.show {
-         display: block;
-         }
-         #submenuCadastro a {
-         color: white !important; /* links brancos */
-         }
-         #submenuCadastro a:hover {
-         background-color: #145c32; /* verde escuro no hover */
-         color: white !important;
-         }
-         /* Botão toggle do menu lateral */
-         .btn.btn-light {
-         background-color: #198754;
-         color: white;
-         border: none;
-         }
-         .btn.btn-light:hover, .btn.btn-light:focus {
-         background-color: #145c32;
-         color: white;
-         box-shadow: none;
-         }
+
+        container-fluid {
+            max-width: 100vw;
+        }
+
       </style>
    </head>
    <body>
-      <!-- Sidebar -->
-      <!-- Sidebar -->
-      <!-- Sidebar -->
-      <!-- Sidebar -->
-      <div id="sidebar" class="sidebar d-flex flex-column align-items-start py-3">
-         <!-- Toggle -->
-         <!-- Botão para alternar submenu -->
-         <button class="btn btn-light mb-4" title="Menu" data-bs-toggle="collapse" data-bs-target="#submenuCadastro" aria-expanded="false" aria-controls="submenuCadastro">
-         <i class="bi bi-list" style="font-size: 1.5rem;"></i>
-         </button>
-         <!-- Submenu -->
-         <div class="collapse rounded" id="submenuCadastro" style="width: 100%;">
-            <div class="d-flex flex-column ps-3">
-               <a href="index.php" class="mb-2 text-dark d-flex align-items-center">
-               <i class="bi bi-pencil-square me-2"></i> <span>Cadastrar Análises</span>
-               </a>
-               <a href="analises.php" class="mb-2 text-dark d-flex align-items-center">
-                <i class="bi bi-list-columns-reverse me-2"></i> <span>Minhas Análises</span>
-               </a>
+        <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-menu">
+            <button class="toggle-btn" onclick="toggleSidebar()">
+                <i class="bi bi-list"></i>
+                <!--<span>Menu</span>-->
+            </button>
+            
+            <a href="principal.php" class="sidebar-item">
+                <i class="bi bi-house"></i>
+                <span>Início</span>
+            </a>
+            
+            <a href="index.php" class="sidebar-item">
+                <i class="bi bi-plus-circle"></i>
+                <span>Nova Análise</span>
+            </a>
+            
+            <a href="analises.php" class="sidebar-item">
+                <i class="bi bi-clipboard-data"></i>
+                <span>Análises</span>
+            </a>
 
-               <a href="usuarios.php" class="mb-2 text-dark d-flex align-items-center">
-               <i class="bi bi-box-arrow-right me-2"></i> <span>Cadastrar usuários</span>
-               </a>
+            <a href="usuarios.php" class="sidebar-item">
+                <i class="bi bi-person-fill"></i>
+                <span>Usuários</span>
+            </a>
 
-               <a href="logout.php" class="mb-2 text-dark d-flex align-items-center">
-               <i class="bi bi-box-arrow-right me-2"></i> <span>Sair</span>
-               </a>
-               <a href="#" class="mb-2 text-dark d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#infoModal">
-               <i class="bi bi-info-circle me-2"></i> <span>Sobre o Sistema</span>
-               </a>
-            </div>
-         </div>
-      </div>
-      <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
-         <div class="modal-dialog">
+            <a href="#" class="sidebar-item" data-bs-toggle="modal" data-bs-target="#sobreModal">
+                <i class="bi bi-info-circle"></i>
+                <span>Sobre</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Modal Sobre -->
+    <div class="modal fade" id="sobreModal" tabindex="-1" aria-labelledby="sobreModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
-               <div class="modal-header">
-                  <h5 class="modal-title" id="infoModalLabel">Informações do Sistema</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-               </div>
-               <div class="modal-body">
-                  <p>Versão: 1.0.0</p>
-                  <p>Desenvolvido por: Seu Nome ou Empresa</p>
-                  <p>Contato: email@exemplo.com</p>
-               </div>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="sobreModalLabel">Sobre o Sistema</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Versão: 1.0.0</p>
+                    <p>Desenvolvido por: [Thiago Bavaresco]</p>
+                    <p>Contato: [thiagobavaresco@unochapeco.edu.br]</p>
+                </div>
             </div>
-         </div>
-      </div>
+        </div>
+    </div>
+
       <!-- Main Content -->
-      <div class="container-fluid" style="margin-left: 70px;">
+      <div class="container-fluid">
          <div class="py-3">
             <h4 class="logo">fertilizamais</h4>
          </div>
@@ -339,6 +374,19 @@ unset($_SESSION['erro']);
          </div>
       </div>
       <script>
+    // Função para alternar o sidebar
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('expanded');
+            
+            // Ajusta o margin-left do body
+            if (sidebar.classList.contains('expanded')) {
+                document.body.style.marginLeft = '200px';
+            } else {
+                document.body.style.marginLeft = '70px';
+            }
+        }
+
 function submitForm() {
     // Marca o formulário como para ser submetido
     document.getElementById('form-submitted').value = '1';

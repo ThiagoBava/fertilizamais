@@ -131,19 +131,30 @@ $dados = $_SESSION['dados_formulario'];
         }
 
         .dados-experimento {
-    max-width: 900px;
-    margin: 0 auto;
-}
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
-.info-item {
-    border: 1px solid #dee2e6;
-    transition: all 0.3s ease;
-}
+        .info-item {
+            border: 1px solid #dee2e6;
+            transition: all 0.3s ease;
+        }
 
-.info-item:hover {
-    background-color: #e9ecef !important;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+        .info-item:hover {
+            background-color: #e9ecef !important;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            bottom: 0px;
+            text-align: center;
+            padding: 10px;
+            background-color: #198754;
+            color: #fff;
+            font-size: 1rem;
+            width: 100%;
+        }
+
     </style>
 </head>
 <body>
@@ -170,7 +181,7 @@ $dados = $_SESSION['dados_formulario'];
         <div class="row justify-content-center">
             <div class="col-md-3 col-6 mb-2">
                 <div class="info-item bg-light p-2 rounded">
-                    <strong>Período:</strong> <?php echo htmlspecialchars($dados['periodo'] ?? 'N/A'); ?>
+                    <strong>Periodo:</strong> <?php echo htmlspecialchars($dados['periodo'] ?? 'N/A'); ?>
                 </div>
             </div>
             <div class="col-md-3 col-6 mb-2">
@@ -583,5 +594,10 @@ function salvarAnalise() {
     });
 }
     </script>
+
+<footer>
+    <p>fertilizamais © 2025 - Sistema de Gestão de Análises de Solo</p>
+</footer>
+
 </body>
 </html>

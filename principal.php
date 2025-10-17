@@ -87,7 +87,7 @@ session_start();
             background: none;
             border: none;
             color: white;
-            /*font-size: 1.5rem;*/
+            font-size: 1.5rem;
             padding: 10px;
             cursor: pointer;
             width: 100%;
@@ -147,8 +147,8 @@ session_start();
         }
         
         .carousel-item img {
-            height: 550px;
-            width: 1680px;
+            height: 450px;
+            width: 1280px;
             object-fit: cover;
         }
     </style>
@@ -159,7 +159,7 @@ session_start();
         <div class="sidebar-menu">
             <button class="toggle-btn" onclick="toggleSidebar()">
                 <i class="bi bi-list"></i>
-                <span>Menu</span>
+                <!--<span>Menu</span>-->
             </button>
             
             <a href="principal.php" class="sidebar-item">
@@ -175,6 +175,16 @@ session_start();
             <a href="analises.php" class="sidebar-item">
                 <i class="bi bi-clipboard-data"></i>
                 <span>Análises</span>
+            </a>
+
+            <a href="usuarios.php" class="sidebar-item">
+                <i class="bi bi-person-fill"></i>
+                <span>Usuários</span>
+            </a>
+
+            <a href="logout.php" class="sidebar-item">
+               <i class="bi bi-box-arrow-right me-2"></i> 
+               <span>Sair</span>
             </a>
             
             <a href="#" class="sidebar-item" data-bs-toggle="modal" data-bs-target="#sobreModal">
