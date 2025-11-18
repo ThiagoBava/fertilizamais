@@ -40,14 +40,12 @@ $analises = $stmt->fetchAll(PDO::FETCH_ASSOC);
             --secondary-color: #146c43;
             --light-bg: #f8f9fa;
         }
-        
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             background-color: var(--light-bg);
             margin-left: 70px;
             transition: margin-left 0.3s;
         }
-        
         .sidebar {
             width: 60px;
             height: 100vh;
@@ -60,15 +58,12 @@ $analises = $stmt->fetchAll(PDO::FETCH_ASSOC);
             overflow-x: hidden;
             z-index: 1000;
         }
-        
         .sidebar.expanded {
             width: 200px;
         }
-        
         .sidebar-menu {
             padding-top: 20px;
         }
-        
         .sidebar-item {
             padding: 10px 15px;
             color: white;
@@ -77,25 +72,20 @@ $analises = $stmt->fetchAll(PDO::FETCH_ASSOC);
             align-items: center;
             transition: background-color 0.3s;
         }
-        
         .sidebar-item:hover {
             background-color: var(--secondary-color);
         }
-        
         .sidebar-item i {
             margin-right: 10px;
             font-size: 1.2rem;
             min-width: 25px;
         }
-        
         .sidebar-item span {
             display: none;
         }
-        
         .sidebar.expanded .sidebar-item span {
             display: inline;
-        }
-                
+        }   
         .toggle-btn {
             background: none;
             border: none;
@@ -106,13 +96,11 @@ $analises = $stmt->fetchAll(PDO::FETCH_ASSOC);
             width: 100%;
             text-align: left;
         }
-
         .logo {
             font-weight: bold;
             color: green;
             font-size: 24px;
         }
-
         footer {
             position: fixed;
             left: 0px;
@@ -124,14 +112,12 @@ $analises = $stmt->fetchAll(PDO::FETCH_ASSOC);
             font-size: 1rem;
             width: 100vw;
         }
-
         container-fluid {
             max-width: 100vw;
         }
     </style>
 </head>
 <body>
-        <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-menu">
             <button class="toggle-btn" onclick="toggleSidebar()">
@@ -165,7 +151,6 @@ $analises = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 
-    <!-- Modal Sobre -->
     <div class="modal fade" id="sobreModal" tabindex="-1" aria-labelledby="sobreModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -182,7 +167,6 @@ $analises = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 
-<!-- Conteúdo -->
 <div class="container-fluid">
     <div class="py-3">
         <h4 class="logo">fertilizamais</h4>

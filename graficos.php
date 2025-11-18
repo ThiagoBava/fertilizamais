@@ -31,26 +31,22 @@ $dados = $_SESSION['dados_formulario'];
             --antes-color: #3498db;
             --depois-color: #e74c3c;
         }
-        
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             background-color: var(--light-bg);
             color: #333;
             line-height: 1.6;
         }
-        
         .header {
             background-color: white;
             box-shadow: var(--card-shadow);
             margin-bottom: 2rem;
         }
-        
         .logo {
             color: var(--primary-color);
             font-weight: 700;
             font-size: 1.8rem;
         }
-        
         .card {
             border: none;
             border-radius: 10px;
@@ -58,11 +54,9 @@ $dados = $_SESSION['dados_formulario'];
             margin-bottom: 2rem;
             transition: transform 0.3s ease;
         }
-        
         .card:hover {
             transform: translateY(-5px);
         }
-        
         .card-header {
             background-color: var(--primary-color);
             color: white;
@@ -70,50 +64,41 @@ $dados = $_SESSION['dados_formulario'];
             padding: 1rem 1.5rem;
             font-weight: 600;
         }
-        
         .chart-container {
             position: relative;
             height: 350px;
             width: 100%;
         }
-        
         .comparativo-legend {
             display: flex;
             justify-content: center;
             margin-top: 15px;
         }
-        
         .legend-item {
             display: flex;
             align-items: center;
             margin: 0 15px;
         }
-        
         .legend-color {
             width: 20px;
             height: 20px;
             border-radius: 3px;
             margin-right: 8px;
         }
-        
         .antes-color {
             background-color: var(--antes-color);
         }
-        
         .depois-color {
             background-color: var(--depois-color);
         }
-        
         .diferenca-positiva {
             color: var(--primary-color);
             font-weight: bold;
         }
-        
         .diferenca-negativa {
             color: var(--depois-color);
             font-weight: bold;
         }
-        
         .btn-voltar {
             background-color: var(--primary-color);
             color: white;
@@ -124,27 +109,22 @@ $dados = $_SESSION['dados_formulario'];
             align-items: center;
             margin-bottom: 20px;
         }
-        
         .btn-voltar:hover {
             background-color: var(--secondary-color);
             color: white;
         }
-
         .dados-experimento {
             max-width: 900px;
             margin: 0 auto;
         }
-
         .info-item {
             border: 1px solid #dee2e6;
             transition: all 0.3s ease;
         }
-
         .info-item:hover {
             background-color: #e9ecef !important;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-
         footer {
             bottom: 0px;
             text-align: center;
@@ -456,9 +436,9 @@ $dados = $_SESSION['dados_formulario'];
     <script>
         const dados = <?php echo json_encode($dados); ?>;
         
-        // Função para criar gráficos comparativos
-// Função para converter valores brasileiros (vírgula para ponto)
-function parseBrazilianNumber(value) {
+    // Função para criar gráficos comparativos
+    // Função para converter valores brasileiros (vírgula para ponto)
+    function parseBrazilianNumber(value) {
     if (value === null || value === '' || value === undefined) return null;
     if (typeof value === 'number') return value;
     
@@ -469,7 +449,7 @@ function parseBrazilianNumber(value) {
     if (/^-?\d+([,.]\d+)?$/.test(strValue)) {
         return parseFloat(strValue.replace(',', '.'));
     }
-    
+
     return null;
 }
 
@@ -552,8 +532,7 @@ function criarGraficoComparativo(id, titulo, antes, depois, unidade = '') {
         }
     });
 }
-        
-        // Criar gráficos individuais
+
 // Criar gráficos individuais
 if (dados.phH2OAntes || dados.phH2ODepois) {
     criarGraficoComparativo('graficoPh', 'pH da Água', dados.phH2OAntes, dados.phH2ODepois);

@@ -98,7 +98,6 @@ $erro = $_SESSION['erro'] ?? null;
 unset($_SESSION['erro']);
 ?>
 
-
 <!DOCTYPE html>
 <html lang="pt-br">
    <head>
@@ -106,7 +105,6 @@ unset($_SESSION['erro']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Fertilizamais</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!-- Bootstrap -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
@@ -117,14 +115,12 @@ unset($_SESSION['erro']);
             --secondary-color: #146c43;
             --light-bg: #f8f9fa;
         }
-        
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             background-color: var(--light-bg);
             margin-left: 70px;
             transition: margin-left 0.3s;
         }
-        
         .sidebar {
             width: 60px;
             height: 100vh;
@@ -137,15 +133,12 @@ unset($_SESSION['erro']);
             overflow-x: hidden;
             z-index: 1000;
         }
-        
         .sidebar.expanded {
             width: 200px;
         }
-        
         .sidebar-menu {
             padding-top: 20px;
         }
-        
         .sidebar-item {
             padding: 10px 15px;
             color: white;
@@ -154,25 +147,20 @@ unset($_SESSION['erro']);
             align-items: center;
             transition: background-color 0.3s;
         }
-        
         .sidebar-item:hover {
             background-color: var(--secondary-color);
         }
-        
         .sidebar-item i {
             margin-right: 10px;
             font-size: 1.2rem;
             min-width: 25px;
         }
-        
         .sidebar-item span {
             display: none;
         }
-        
         .sidebar.expanded .sidebar-item span {
             display: inline;
-        }
-                
+        }     
         .toggle-btn {
             background: none;
             border: none;
@@ -183,13 +171,11 @@ unset($_SESSION['erro']);
             width: 100%;
             text-align: left;
         }
-
          .logo {
             font-weight: bold;
             color: green;
             font-size: 24px;
          }
-
          .tab-button {
             border: none;
             padding: 0.5rem 1rem;
@@ -197,25 +183,19 @@ unset($_SESSION['erro']);
             margin-right: 0.5rem;
             cursor: pointer;
          }
-
          .tab-button.active {
             background-color: #3f51b5;
             color: white;
          }
-
          .tab-content {
             display: none;
          }
-
          .tab-content.active {
             display: block;
          }
-
          .form-narrow {
-         /* ocupa toda a coluna por padrão */
-            max-width: 300px;  /* limite máximo da largura */
+            max-width: 300px;
          }
-
          .card {
             background-color: #fff;
             border-radius: 8px;
@@ -223,7 +203,6 @@ unset($_SESSION['erro']);
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             margin-bottom: 20px;
         }
-
         container-fluid {
             max-width: 100vw;
         }
@@ -236,7 +215,6 @@ unset($_SESSION['erro']);
         <div class="sidebar-menu">
             <button class="toggle-btn" onclick="toggleSidebar()">
                 <i class="bi bi-list"></i>
-                <!--<span>Menu</span>-->
             </button>
             
             <a href="principal.php" class="sidebar-item">
@@ -371,7 +349,6 @@ unset($_SESSION['erro']);
       </div>
    </div>
 
-<!-- Adicione esta linha antes do botão -->
 <input type="hidden" name="form_submitted" value="0" id="form-submitted">
 
 <div class="text-end mt-1">
@@ -379,7 +356,7 @@ unset($_SESSION['erro']);
 </div>
 </form>
     </div>
-               </div>
+        </div>
             </div>
          </div>
       </div>
@@ -435,7 +412,6 @@ function submitForm() {
            submenu.classList.remove('show');
          }
          });
-         
          
       </script>
    </body>

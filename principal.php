@@ -1,11 +1,6 @@
 <?php
 session_start();
 
-// Verifica se o usuário está logado
-/*if (!isset($_SESSION['usuario_logado'])) {
-    header("Location: login.php");
-    exit();
-}*/
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -13,28 +8,21 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fertilizamais - Início</title>
-    
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
-    
-    <!-- CSS Personalizado -->
+
     <style>
         :root {
             --primary-color: #198754;
             --secondary-color: #146c43;
             --light-bg: #f8f9fa;
         }
-        
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             background-color: var(--light-bg);
-            margin-left: 70px; /* Espaço para o sidebar */
+            margin-left: 70px;
             transition: margin-left 0.3s;
         }
-        
         .sidebar {
             width: 60px;
             height: 100vh;
@@ -47,15 +35,12 @@ session_start();
             overflow-x: hidden;
             z-index: 1000;
         }
-        
         .sidebar.expanded {
             width: 200px;
         }
-        
         .sidebar-menu {
             padding-top: 20px;
         }
-        
         .sidebar-item {
             padding: 10px 15px;
             color: white;
@@ -64,25 +49,20 @@ session_start();
             align-items: center;
             transition: background-color 0.3s;
         }
-        
         .sidebar-item:hover {
             background-color: var(--secondary-color);
         }
-        
         .sidebar-item i {
             margin-right: 10px;
             font-size: 1.2rem;
             min-width: 25px;
         }
-        
         .sidebar-item span {
             display: none;
         }
-        
         .sidebar.expanded .sidebar-item span {
             display: inline;
         }
-        
         .toggle-btn {
             background: none;
             border: none;
@@ -93,7 +73,6 @@ session_start();
             width: 100%;
             text-align: left;
         }
-        
         .hero-section {
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('imagens/banner1.png');
             background-size: cover;
@@ -103,14 +82,12 @@ session_start();
             text-align: center;
             margin-bottom: 40px;
         }
-        
         .logo {
             font-size: 2.5rem;
             font-weight: bold;
             color: white;
             margin-bottom: 20px;
         }
-        
         .card {
             border: none;
             border-radius: 10px;
@@ -118,26 +95,21 @@ session_start();
             transition: transform 0.3s;
             margin-bottom: 20px;
         }
-        
         .card:hover {
             transform: translateY(-5px);
         }
-        
         .card-img-top {
             border-radius: 10px 10px 0 0;
             height: 200px;
             object-fit: cover;
         }
-        
         .btn-primary {
             background-color: var(--primary-color);
             border: none;
         }
-        
         .btn-primary:hover {
             background-color: var(--secondary-color);
         }
-        
         /* Carrossel */
         .carousel {
             margin-top: 20px;
@@ -145,7 +117,6 @@ session_start();
             overflow: hidden;
             margin-bottom: 30px;
         }
-        
         .carousel-item img {
             height: 450px;
             width: 1280px;
@@ -159,7 +130,6 @@ session_start();
         <div class="sidebar-menu">
             <button class="toggle-btn" onclick="toggleSidebar()">
                 <i class="bi bi-list"></i>
-                <!--<span>Menu</span>-->
             </button>
             
             <a href="principal.php" class="sidebar-item">
@@ -236,15 +206,7 @@ session_start();
             </button>
         </div>
 
-        <!-- Seção Hero
-        <div class="hero-section rounded">
-            <div class="container">
-                <h1 class="logo">fertilizamais</h1>
-                <h2>ANALISAR O SEU PLANTIO PARA COLHER MAIS FRUTOS!</h2>
-            </div>
-        </div>-->
-
-        <!-- Cards de Ação -->
+ <!-- Cards de Ação -->
         <div class="row justify-content-center">
             <div class="col-md-5">
                 <div class="card">
@@ -268,9 +230,7 @@ session_start();
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
     <script>
         // Função para alternar o sidebar
         function toggleSidebar() {

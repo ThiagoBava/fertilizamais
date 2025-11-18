@@ -38,7 +38,6 @@ $usuarios = $db->query("SELECT id, usuario FROM usuarios ORDER BY id DESC")->fet
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuários - Fertilizamais</title>
 
-    <!-- Bootstrap CSS e Icones -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
 
@@ -48,14 +47,12 @@ $usuarios = $db->query("SELECT id, usuario FROM usuarios ORDER BY id DESC")->fet
             --secondary-color: #146c43;
             --light-bg: #f8f9fa;
         }
-        
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             background-color: var(--light-bg);
             margin-left: 70px;
             transition: margin-left 0.3s;
         }
-        
         .sidebar {
             width: 60px;
             height: 100vh;
@@ -68,15 +65,12 @@ $usuarios = $db->query("SELECT id, usuario FROM usuarios ORDER BY id DESC")->fet
             overflow-x: hidden;
             z-index: 1000;
         }
-        
         .sidebar.expanded {
             width: 200px;
         }
-        
         .sidebar-menu {
             padding-top: 20px;
         }
-        
         .sidebar-item {
             padding: 10px 15px;
             color: white;
@@ -85,25 +79,20 @@ $usuarios = $db->query("SELECT id, usuario FROM usuarios ORDER BY id DESC")->fet
             align-items: center;
             transition: background-color 0.3s;
         }
-        
         .sidebar-item:hover {
             background-color: var(--secondary-color);
         }
-        
         .sidebar-item i {
             margin-right: 10px;
             font-size: 1.2rem;
             min-width: 25px;
         }
-        
         .sidebar-item span {
             display: none;
         }
-        
         .sidebar.expanded .sidebar-item span {
             display: inline;
-        }
-                
+        }  
         .toggle-btn {
             background: none;
             border: none;
@@ -114,13 +103,11 @@ $usuarios = $db->query("SELECT id, usuario FROM usuarios ORDER BY id DESC")->fet
             width: 100%;
             text-align: left;
         }
-
         .logo {
             font-weight: bold;
             color: green;
             font-size: 24px;
         }
-
         footer {
             position: fixed;
             left: 0px;
@@ -132,7 +119,6 @@ $usuarios = $db->query("SELECT id, usuario FROM usuarios ORDER BY id DESC")->fet
             font-size: 1rem;
             width: 100vw;
         }
-
         container-fluid {
             width: 100vw;
         }
@@ -140,7 +126,6 @@ $usuarios = $db->query("SELECT id, usuario FROM usuarios ORDER BY id DESC")->fet
     </style>
 </head>
 <body>
-        <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-menu">
             <button class="toggle-btn" onclick="toggleSidebar()">
@@ -243,15 +228,12 @@ $usuarios = $db->query("SELECT id, usuario FROM usuarios ORDER BY id DESC")->fet
     </div>
 </div>
 
-<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // Função para alternar o sidebar
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('expanded');
             
-            // Ajusta o margin-left do body
             if (sidebar.classList.contains('expanded')) {
                 document.body.style.marginLeft = '200px';
             } else {

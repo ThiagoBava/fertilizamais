@@ -24,21 +24,22 @@ unset($_SESSION['erro_login']);
         }
         .logo {
             font-weight: bold;
-            color: #198754; /* Cor verde */
+            color: #198754;
             text-align: center;
             font-size: 2rem;
             margin-bottom: 20px;
         }
         .btn-custom {
-            background-color: #007bff; /* Azul */
+            background-color: #007bff;
             color: white;
         }
         .btn-custom:hover {
-            background-color: #0056b3; /* Azul escuro ao passar o mouse */
+            background-color: #0056b3;
         }
         .form-label {
             font-weight: bold;
         }
+
     </style>
 </head>
 <body>
