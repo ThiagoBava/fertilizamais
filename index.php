@@ -14,6 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST['form_submitted'] ?? '0') =
         'talhao' => $_POST['talhao'] ?? null,
         'grid' => $_POST['grid'] ?? null,
         'dataAnalise' => $_POST['dataAnalise'] ?? null,
+        'tipoCultura' => $_POST['tipoCultura'] ?? null,
         
         // Delineamento Experimental
         'numTratamentos' => $_POST['numTratamentos'] ?? null,
@@ -215,6 +216,14 @@ unset($_SESSION['erro']);
             max-width: 300px;  /* limite máximo da largura */
          }
 
+         .card {
+            background-color: #fff;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
         container-fluid {
             max-width: 100vw;
         }
@@ -291,7 +300,8 @@ unset($_SESSION['erro']);
       <div class="col-md-4 mb-2"><input type="text" class="form-control" name="talhao" placeholder="Talhão" required></div>
       <div class="col-md-4 mb-2"><input type="text" class="form-control" name="grid" placeholder="Grid" required></div>
       <div class="col-md-4 mb-2"><input type="date" class="form-control" name="dataAnalise" placeholder="Data Análise" required></div>
-   </div>
+      <div class="col-md-4 mb-2"><input type="text" class="form-control" id="tipoCultura" name="tipoCultura" placeholder="Cultura" required></div>
+</div>
    <h5>Delineamento Experimental</h5>
    <div class="row mb-3">
       <div class="col-md-4"><input type="text" class="form-control" name="numTratamentos" placeholder="Número de Tratamentos" required></div>
@@ -308,56 +318,56 @@ unset($_SESSION['erro']);
    <!-- Solo Antes -->
    <div id="solo-antes" class="tab-content active">
       <div class="row">
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="argilaAntes" placeholder="Argila %"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="phH2OAntes" placeholder="pH H2O"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="smpAntes" placeholder="SMP"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="moAntes" placeholder="MO %"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="pAntes" placeholder="P mg/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="kAntes" placeholder="K mg/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="mgAntes" placeholder="Mg cmol/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="alValorAntes" placeholder="Al (Valor m)"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="alAntes" placeholder="Al cmol/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="caAntes" placeholder="Ca cmol/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="ctcAntes" placeholder="CTC pH 7,0 cmol/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="mgkAntes" placeholder="Mg/K"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="halAntes" placeholder="H + Al cmol/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="camgAntes" placeholder="Ca/Mg"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="cakAntes" placeholder="Ca/K"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="cuAntes" placeholder="Cu mg/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="sAntes" placeholder="S mg/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="znAntes" placeholder="Zn mg/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="mnAntes" placeholder="Mn mg/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="bAntes" placeholder="B mg/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="feAntes" placeholder="Fe mg/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="ceAntes" placeholder="CE mS/cm"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="argilaAntes" placeholder="Argila %"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="phH2OAntes" placeholder="pH H2O"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="smpAntes" placeholder="SMP"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="moAntes" placeholder="MO %"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="pAntes" placeholder="P mg/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="kAntes" placeholder="K mg/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="mgAntes" placeholder="Mg cmol/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="alValorAntes" placeholder="Al (Valor m)"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="alAntes" placeholder="Al cmol/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="caAntes" placeholder="Ca cmol/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="ctcAntes" placeholder="CTC pH 7,0 cmol/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="mgkAntes" placeholder="Mg/K"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="halAntes" placeholder="H + Al cmol/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="camgAntes" placeholder="Ca/Mg"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="cakAntes" placeholder="Ca/K"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="cuAntes" placeholder="Cu mg/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="sAntes" placeholder="S mg/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="znAntes" placeholder="Zn mg/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="mnAntes" placeholder="Mn mg/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="bAntes" placeholder="B mg/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="feAntes" placeholder="Fe mg/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="ceAntes" placeholder="CE mS/cm"></div>
       </div>
    </div>
 
    <!-- Solo Depois -->
    <div id="solo-depois" class="tab-content">
       <div class="row">
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="argilaDepois" placeholder="Argila %"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="phH2ODepois" placeholder="pH H2O"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="smpDepois" placeholder="SMP"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="moDepois" placeholder="MO %"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="pDepois" placeholder="P mg/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="kDepois" placeholder="K mg/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="mgDepois" placeholder="Mg cmol/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="alValorDepois" placeholder="Al (Valor m)"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="alDepois" placeholder="Al cmol/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="caDepois" placeholder="Ca cmol/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="ctcDepois" placeholder="CTC pH 7,0 cmol/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="mgkDepois" placeholder="Mg/K"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="halDepois" placeholder="H + Al cmol/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="camgDepois" placeholder="Ca/Mg"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="cakDepois" placeholder="Ca/K"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="cuDepois" placeholder="Cu mg/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="sDepois" placeholder="S mg/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="znDepois" placeholder="Zn mg/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="mnDepois" placeholder="Mn mg/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="bDepois" placeholder="B mg/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="feDepois" placeholder="Fe mg/dm³"></div>
-         <div class="col-md-4 mb-2"><input class="form-control form-narrow" name="ceDepois" placeholder="CE mS/cm"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="argilaDepois" placeholder="Argila %"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="phH2ODepois" placeholder="pH H2O"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="smpDepois" placeholder="SMP"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="moDepois" placeholder="MO %"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="pDepois" placeholder="P mg/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="kDepois" placeholder="K mg/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="mgDepois" placeholder="Mg cmol/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="alValorDepois" placeholder="Al (Valor m)"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="alDepois" placeholder="Al cmol/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="caDepois" placeholder="Ca cmol/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="ctcDepois" placeholder="CTC pH 7,0 cmol/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="mgkDepois" placeholder="Mg/K"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="halDepois" placeholder="H + Al cmol/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="camgDepois" placeholder="Ca/Mg"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="cakDepois" placeholder="Ca/K"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="cuDepois" placeholder="Cu mg/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="sDepois" placeholder="S mg/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="znDepois" placeholder="Zn mg/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="mnDepois" placeholder="Mn mg/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="bDepois" placeholder="B mg/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="feDepois" placeholder="Fe mg/dm³"></div>
+         <div class="col-md-4 mb-2"><input type="number" step="0.01" class="form-control form-narrow" name="ceDepois" placeholder="CE mS/cm"></div>
       </div>
    </div>
 
@@ -368,7 +378,7 @@ unset($_SESSION['erro']);
     <button type="button" class="btn btn-primary" onclick="submitForm()">GERAR RELATÓRIO</button>
 </div>
 </form>
-
+    </div>
                </div>
             </div>
          </div>

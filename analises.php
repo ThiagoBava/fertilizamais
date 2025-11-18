@@ -18,7 +18,7 @@ if (isset($_GET['delete'])) {
 }
 
 // Buscar análises
-$stmt = $db->prepare("SELECT id, periodo, anoAgricola, talhao, grid, dataAnalise, numTratamentos, numRepeticoes, numParcelas FROM analises WHERE usuario = ? ORDER BY id DESC");
+$stmt = $db->prepare("SELECT id, periodo, anoAgricola, talhao, tipoCultura, grid, dataAnalise, numTratamentos, numRepeticoes, numParcelas FROM analises WHERE usuario = ? ORDER BY id DESC");
 $stmt->execute([$usuario]);
 $analises = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -199,6 +199,7 @@ $analises = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <th>Talhão</th>
                             <th>Grid</th>
                             <th>Data</th>
+                            <th>Tipo de Cultura</th>
                             <th>Trat.</th>
                             <th>Repet.</th>
                             <th>Parcelas</th>
@@ -214,6 +215,7 @@ $analises = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <td><?php echo htmlspecialchars($a['talhao']); ?></td>
                                 <td><?php echo htmlspecialchars($a['grid']); ?></td>
                                 <td><?php echo !empty($a['dataAnalise']) ? date('d/m/Y', strtotime($a['dataAnalise'])) : 'N/A'; ?></td>
+                                <td><?php echo htmlspecialchars($a['tipoCultura']); ?></td>
                                 <td><?php echo $a['numTratamentos']; ?></td>
                                 <td><?php echo $a['numRepeticoes']; ?></td>
                                 <td><?php echo $a['numParcelas']; ?></td>

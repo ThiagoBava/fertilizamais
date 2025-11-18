@@ -18,6 +18,7 @@ $db->exec("CREATE TABLE IF NOT EXISTS analises (
     talhao TEXT,
     grid TEXT,
     dataAnalise TEXT,
+    tipoCultura TEXT,
     numTratamentos INTEGER,
     numRepeticoes INTEGER,
     numParcelas INTEGER,
