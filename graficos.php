@@ -436,13 +436,11 @@ $dados = $_SESSION['dados_formulario'];
     <script>
         const dados = <?php echo json_encode($dados); ?>;
         
-    // Função para criar gráficos comparativos
     // Função para converter valores brasileiros (vírgula para ponto)
     function parseBrazilianNumber(value) {
     if (value === null || value === '' || value === undefined) return null;
     if (typeof value === 'number') return value;
     
-    // Converte string para número, tratando vírgula como decimal
     const strValue = value.toString().trim();
     
     // Verifica se é um número válido (com ou sem vírgula)

@@ -70,25 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && ($_POST['form_submitted'] ?? '0') =
         'ceDepois' => $_POST['ceDepois'] ?? null
     ];
 
-    // Validação básica - verifica se pelo menos um campo de análise foi preenchido
-    /*  $camposAnalise = [
-        'argilaAntes', 'phH2OAntes', 'moAntes', 'pAntes', 'argilaDepois', 'phH2ODepois', 'moDepois'
-    ];
-    
-    $algumCampoPreenchido = false;
-    foreach ($camposAnalise as $campo) {
-        if (!empty($_POST[$campo])) {
-           $algumCampoPreenchido = true;
-            break;
-        }
-    }
-    
-    if (!$algumCampoPreenchido) {
-        $_SESSION['erro'] = "Por favor, preencha pelo menos um campo de análise do solo";
-        header("Location: index.php");
-        exit();
-    }*/
-
     header("Location: graficos.php");
     exit();
 }
@@ -361,12 +342,13 @@ unset($_SESSION['erro']);
          </div>
       </div>
       <script>
-    // Função para alternar o sidebar
+
+// Função para alternar o sidebar
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('expanded');
             
-            // Ajusta o margin-left do body
+// Ajusta o margin-left do body
             if (sidebar.classList.contains('expanded')) {
                 document.body.style.marginLeft = '200px';
             } else {

@@ -436,7 +436,6 @@ if (!$dados) {
     <script>
         const dados = <?php echo json_encode($dados); ?>;
 
-// Função para criar gráficos comparativos
 // Função para converter valores brasileiros (vírgula para ponto)
 function parseBrazilianNumber(value) {
     if (value === null || value === '' || value === undefined) return null;

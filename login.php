@@ -62,11 +62,6 @@ unset($_SESSION['erro_login']);
             <div class="d-grid">
                 <button type="submit" class="btn btn-custom">Entrar</button>
             </div>
-            <!--<div class="mt-3">
-                <a href="#" class="link-secondary">Esqueci minha senha</a>
-                <br>
-                <a href="#" class="link-secondary">Criar uma conta</a>
-            </div>-->
         </form>
     </div>
 </body>
